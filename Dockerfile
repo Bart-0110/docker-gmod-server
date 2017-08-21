@@ -4,10 +4,10 @@ FROM debian:stretch
 # Prepare Gmod
 # ------------
 
-RUN dpkg --add-architecture i386 && apt-get update && DEBIAN_FRONTEND=noninteractive apt-get -y install lib32gcc1 wget git
+RUN apt-get update && DEBIAN_FRONTEND=noninteractive apt-get -y install lib32gcc1 wget git
 RUN mkdir /steamcmd
 WORKDIR /steamcmd
-RUN wget http://media.steampowered.com/installer/steamcmd_linux.tar.gz
+RUN wget http://media.steampowered.com/client/steamcmd_linux.tar.gz
 RUN tar -xvzf steamcmd_linux.tar.gz
 RUN mkdir /gmod-base
 RUN /steamcmd/steamcmd.sh +login anonymous +force_install_dir /gmod-base +app_update 4020 validate +quit
@@ -33,11 +33,11 @@ RUN /steamcmd/steamcmd.sh +login anonymous +force_install_dir /gmod-base +app_up
 # Download and install Ulysses
 # ----------------------
 
-WORKDIR /
-RUN git clone https://github.com/Nayruden/Ulysses.git /tmp/Ulysses
-RUN ["/bin/cp","-rp","/tmp/Ulysses/ulib","/gmod-base/garrysmod/addons"]
-RUN ["/bin/cp","-rp","/tmp/Ulysses/ulx","/gmod-base/garrysmod/addons"]
-RUN rm -rf /tmp/Ulysses
+#WORKDIR /
+#RUN git clone https://github.com/Nayruden/Ulysses.git /tmp/Ulysses
+#RUN ["/bin/cp","-rp","/tmp/Ulysses/ulib","/gmod-base/garrysmod/addons"]
+#RUN ["/bin/cp","-rp","/tmp/Ulysses/ulx","/gmod-base/garrysmod/addons"]
+#RUN rm -rf /tmp/Ulysses
 
 # ----------------------
 # Setup Volume and Union
