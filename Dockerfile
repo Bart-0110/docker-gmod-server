@@ -36,8 +36,10 @@ RUN /steamcmd/steamcmd.sh +login anonymous +force_install_dir /gmod-base +app_up
 WORKDIR /
 RUN git clone https://github.com/TeamUlysses/ulib.git /tmp/ulib
 RUN git clone https://github.com/TeamUlysses/ulx.git /tmp/ulx
-RUN ["/bin/cp","-rp","/tmp/ulib","/gmod-base/garrysmod/addons"]
-RUN ["/bin/cp","-rp","/tmp/ulx","/gmod-base/garrysmod/addons"]
+
+COPY /tmp/ulib/ /gmod-base/garrysmod/addons/
+COPY /tmp/ulx/ /gmod-base/garrysmod/addons/
+
 RUN rm -rf /tmp/ulib
 RUN rm -rf /tmp/ulx
 
