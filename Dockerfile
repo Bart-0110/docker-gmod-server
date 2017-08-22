@@ -33,11 +33,13 @@ RUN /steamcmd/steamcmd.sh +login anonymous +force_install_dir /gmod-base +app_up
 # Download and install Ulysses
 # ----------------------
 
-#WORKDIR /
-#RUN git clone https://github.com/Nayruden/Ulysses.git /tmp/Ulysses
-#RUN ["/bin/cp","-rp","/tmp/Ulysses/ulib","/gmod-base/garrysmod/addons"]
-#RUN ["/bin/cp","-rp","/tmp/Ulysses/ulx","/gmod-base/garrysmod/addons"]
-#RUN rm -rf /tmp/Ulysses
+WORKDIR /
+RUN git clone https://github.com/TeamUlysses/ulib.git /tmp/ulib
+RUN git clone https://github.com/TeamUlysses/ulx.git /tmp/ulx
+RUN ["/bin/cp","-rp","/tmp/ulib","/gmod-base/garrysmod/addons"]
+RUN ["/bin/cp","-rp","/tmp/ulx","/gmod-base/garrysmod/addons"]
+RUN rm -rf /tmp/ulib
+RUN rm -rf /tmp/ulx
 
 # ----------------------
 # Setup Volume and Union
