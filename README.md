@@ -1,4 +1,4 @@
-gmod-server-docker
+docker-gmod-server
 ==================
 
 This is a set of Dockerfile and scripts that will create a container that runs a [Garry's Mod](http://www.garrysmod.com/) Server. 
@@ -15,17 +15,17 @@ Using unionfs-fuse requires the container to be run with `--privileged=true` and
 
 Start a server on port 27015 without using the union filesystem:
 
-`docker run -d -p 27015:27015/udp suchipi/gmod-server`
+`docker run -d -p 27015:27015/udp bart0110/gmod-server`
 
 Start a server on an automatically allocated port, mounting the contents of /home/srcds/gmod-1 over the internal base:
 
-`docker run --privileged=true -d -P -e UNION=1 -v /home/srcds/gmod-1:/gmod-volume suchipi/gmod-server`
+`docker run --privileged=true -d -P -e UNION=1 -v /home/srcds/gmod-1:/gmod-volume bart0110/gmod-server`
 
 
 #### Notes/Todo
 You can set the environment variables MAXPLAYERS, MAP, GAMEMODE, G_HOSTNAME, and ARGS to change the startup arguments to the srcds_run command. For example:
 
-`docker run -d -P -e MAXPLAYERS=32 -e MAP=gm_flatgrass -e GAMEMODE=my_cool_gamemode -e G_HOSTNAME="My awesome gmod server" -e ARGS="-insecure +exec something.cfg" suchipi/gmod-server`
+`docker run -d -P -e MAXPLAYERS=32 -e MAP=gm_flatgrass -e GAMEMODE=my_cool_gamemode -e G_HOSTNAME="My awesome gmod server" -e ARGS="-insecure +exec something.cfg" bart0110/gmod-server`
 
 The Source Engine doesn't seem to find out which port it's *actually* running on, so it tells the master servers that it's running on 27015 (or whatever `-port` you specified at runtime) even if you assign with `-p` dynamically. I've explored several potential solutions to this but the bottom line is that the Source Engine Dedicated Server wasn't really set up with this type of NATing in mind (or maybe, for that matter, any type of NAT). If you want this piece to work properly, you should probably just use the same port on the docker host as within the container.
 
