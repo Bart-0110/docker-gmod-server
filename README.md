@@ -1,5 +1,6 @@
 docker-gmod-server
 ==================
+[![](https://images.microbadger.com/badges/image/bart0110/gmod-server.svg)](https://microbadger.com/images/bart0110/gmod-server "Get your own image badge on microbadger.com")
 
 This is a set of Dockerfile and scripts that will create a container that runs a [Garry's Mod](http://www.garrysmod.com/) Server. 
 
